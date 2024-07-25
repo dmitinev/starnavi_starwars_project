@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "jest": true,
+    "jest/globals": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "jest/no-focused-tests": "off",
+    "no-undef": "warn",
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "prettier/prettier": ["off", { "endOfLine": "auto" }],
+    "@typescript-eslint/no-var-requires": "off",
+    "react/react-in-tsx-scope": "off",
+    "no-empty-pattern": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}
+
