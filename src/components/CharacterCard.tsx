@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Text } from '@chakra-ui/react';
+import { Card, CardBody, GridItem, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 
 export default function CharacterCard({
@@ -9,14 +9,20 @@ export default function CharacterCard({
   id: number;
 }) {
   return (
-    <Box flexGrow={1} flexShrink={0}>
+    <GridItem border="none" className="cardCharacterCard" borderRadius="5">
       <Link href={`/character/${id}`}>
-        <Card maxW="400" bgColor="coral" minH="400">
-          <CardBody>
-            <Text textAlign="center">{name}</Text>
+        <Card bgColor="orange" minH="400" borderRadius="5">
+          <CardBody
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+          >
+            <Text fontSize={25} textAlign="center">
+              {name}
+            </Text>
           </CardBody>
         </Card>
       </Link>
-    </Box>
+    </GridItem>
   );
 }

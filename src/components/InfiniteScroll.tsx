@@ -3,7 +3,7 @@ import { fetchCharacters } from '@/actions/characters';
 import CharacterCard from '@/components/CharacterCard';
 import { ICharacter } from '@/types/character';
 import { removeDuplicateObjects } from '@/utils/removeDuplicateObjects';
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Container, Grid, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -37,11 +37,18 @@ export default function InfiniteScroll({
   });
 
   return (
-    <Flex wrap="wrap">
-      {characters.map((char) => (
-        <CharacterCard key={char.name} {...char} />
-      ))}
-      {hasMore && <Spinner ref={ref} />}
-    </Flex>
+    <Container maxW="container.xl" py={15} textAlign="center">
+      <Grid
+        h="100%"
+        templateRows="auto"
+        templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+        gap="20px"
+      >
+        {characters.map((char) => (
+          <CharacterCard key={char.name} {...char} />
+        ))}
+      </Grid>
+      {hasMore && <Spinner size="xl" color="orange" ref={ref} />}
+    </Container>
   );
 }
