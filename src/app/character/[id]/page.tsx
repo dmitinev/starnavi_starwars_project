@@ -1,41 +1,31 @@
-import { fetchSingleCharacter } from '@/actions/characters';
+import { fetchCharacters, fetchSingleCharacter } from '@/actions/characters';
 import { fetchSingleFilm } from '@/actions/films';
+import { fetchSingleSpaceship } from '@/actions/spaceships';
 import CharacterChartFlow from '@/components/CharacterChartFlow';
 import { ICharacter } from '@/types/character';
 import { IFilm } from '@/types/film';
+import { IShip } from '@/types/ship';
 import { Edge, Node } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { Metadata } from 'next';
 
-// const position = { x: 0, y: 0 };
+export async function generateStaticParams() {
+  const characters = await fetchCharacters();
+  return characters.results.map((char) => ({
+    params: { id: char.id.toString() },
+  }));
+}
 
-// const initialNodes: Node[] = [
-//   {
-//     id: '12',
-//     data: { name: 'Char node 1' },
-//     draggable: false,
-//     position,
-//     type: 'FlowCustomCharacterNode',
-//   },
-//   {
-//     id: '1',
-//     data: { name: 'Film node 1' },
-//     draggable: false,
-//     position,
-//     type: 'FlowCustomFilmNode',
-//   },
-//   {
-//     id: '6',
-//     data: { name: 'Film node 2' },
-//     draggable: false,
-//     position,
-//     type: 'FlowCustomFilmNode',
-//   },
-// ];
-
-// const initialEdges: Edge[] = [
-//   { id: '1', source: '12', target: '1', animated: true },
-//   { id: '2', source: '12', target: '6', animated: true },
-// ];
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const character = await fetchSingleCharacter(Number(id));
+  return {
+    title: character.name,
+  };
+}
 
 export default async function CharacterPage({
   params: { id },
@@ -46,8 +36,14 @@ export default async function CharacterPage({
   const films = await Promise.all(
     character.films.map((id) => fetchSingleFilm(id)),
   );
-  const { nodesArray, edgesArray } = convertApiDataToFlowData(character, films);
-  console.log(nodesArray, edgesArray);
+  const starships = await Promise.all(
+    character.starships.map((id) => fetchSingleSpaceship(id)),
+  );
+  const { nodesArray, edgesArray } = convertApiDataToFlowData(
+    character,
+    films,
+    starships,
+  );
 
   return <CharacterChartFlow edgesArray={edgesArray} nodesArray={nodesArray} />;
 }
@@ -55,6 +51,7 @@ export default async function CharacterPage({
 function convertApiDataToFlowData(
   char: ICharacter,
   films: IFilm[],
+  starships: IShip[],
 ): { nodesArray: Node[]; edgesArray: Edge[] } {
   const _position = { x: 0, y: 0 };
 
@@ -68,7 +65,7 @@ function convertApiDataToFlowData(
     position: _position,
     type: 'FlowCustomCharacterNode',
   });
-  films.forEach((film, index) => {
+  films.forEach((film, filmIndex) => {
     nodes.push({
       id: film.id.toString(),
       data: { name: film.title },
@@ -77,13 +74,31 @@ function convertApiDataToFlowData(
       type: 'FlowCustomFilmNode',
     });
     edges.push({
-      id: `char-film-${index}`,
+      id: `char-film-${filmIndex}`,
       source: char.id.toString(),
       target: film.id.toString(),
       animated: true,
     });
+    if (starships.length > 0) {
+      starships.forEach((ship, shipIndex) => {
+        if (film.starships.includes(ship.id)) {
+          nodes.push({
+            id: ship.id.toString(),
+            data: { name: ship.name, model: ship.model },
+            draggable: false,
+            position: _position,
+            type: 'FlowCustomShipNode',
+          });
+          edges.push({
+            id: `film-ship-${filmIndex}-${shipIndex}`,
+            source: film.id.toString(),
+            target: ship.id.toString(),
+            animated: true,
+          });
+        }
+      });
+    }
   });
 
   return { nodesArray: nodes, edgesArray: edges };
 }
-

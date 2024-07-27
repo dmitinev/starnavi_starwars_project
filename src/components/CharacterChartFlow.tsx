@@ -4,7 +4,9 @@ import FlowCustomCharacterNode from '@/components/FlowCustomCharacterNode';
 import FlowCustomFilmNode from '@/components/FlowCustomFilmNode';
 import FlowCustomShipNode from '@/components/FlowCustomShipNode';
 import { getPlacedElements } from '@/utils/makeFlowNodesAutolayout';
+import { Flex } from '@chakra-ui/react';
 import {
+  Controls,
   Edge,
   Node,
   ReactFlow,
@@ -33,9 +35,16 @@ export default function CharacterChartFlow({
   const [edges] = useEdgesState(placedEdges);
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
-      <ReactFlow nodes={nodes} edges={edges} fitView nodeTypes={nodeTypes} />
-    </div>
+    <Flex w="100%" h="90%" m="auto 0">
+      <ReactFlow
+        draggable={false}
+        nodes={nodes}
+        edges={edges}
+        nodeTypes={nodeTypes}
+        nodesDraggable={false}
+      >
+        <Controls />
+      </ReactFlow>
+    </Flex>
   );
 }
-

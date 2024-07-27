@@ -1,8 +1,8 @@
 import dagre from '@dagrejs/dagre';
 import { Edge, Node } from '@xyflow/react';
 
-const NODEWIDTH = 130; //vertical margin between nodes
-const NODEHEIGHT = 20; // horizontal margin between nodes
+const NODEWIDTH = 300; //vertical margin between nodes
+const NODEHEIGHT = 40; // horizontal margin between nodes
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -27,19 +27,16 @@ export const getPlacedElements = (
 
   const newNodes = nodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
-    const newNode = {
+    return {
       ...node,
       targetPosition: isHorizontal ? 'left' : 'top',
       sourcePosition: isHorizontal ? 'right' : 'bottom',
       position: {
-        x: nodeWithPosition.x - NODEWIDTH / 2,
-        y: nodeWithPosition.y - NODEHEIGHT / 2,
+        x: nodeWithPosition.x,
+        y: nodeWithPosition.y,
       },
     };
-
-    return newNode;
   });
 
   return { nodes: newNodes, edges };
 };
-

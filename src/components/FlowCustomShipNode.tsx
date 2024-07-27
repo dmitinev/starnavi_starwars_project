@@ -4,16 +4,14 @@ import { Box, Text } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 
 export default function FlowCustomFilmNode({
-  data: { name, model },
+  data: { name },
 }: NodeProps<ShipNode>) {
   return (
     <Box>
       <Box bg="white" p={1} border="1px solid gray">
         <Text>{name}</Text>
-        <Text>{model}</Text>
       </Box>
-      <Handle type="target" position={Position.Top} />
+      <Handle type="target" position={Position.Left} />
     </Box>
   );
 }
-

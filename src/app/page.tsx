@@ -4,8 +4,8 @@ import InfiniteScroll from '@/components/InfiniteScroll';
 export default async function Home() {
   const characters = await fetchCharacters(1);
   return (
-    <div>
+    <section>
       <InfiniteScroll initialChars={characters.results} />
-    </div>
+    </section>
   );
 }
