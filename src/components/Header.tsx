@@ -6,7 +6,13 @@ export default function Header() {
     <Box as="header">
       <Container maxW="100%" bgColor="#000000" px="30">
         <Flex justifyContent="center">
-          <Image width={50} height={50} src="/sw_logo.png" alt="Logo" />
+          <Image
+            width={50}
+            height={50}
+            src="/sw_logo.png"
+            alt="Logo"
+            priority
+          />
         </Flex>
       </Container>
     </Box>
