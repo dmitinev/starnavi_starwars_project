@@ -19,7 +19,7 @@ export default function FlowCustomCharacterNode({
           <Avatar size="md" />
         </WrapItem>
         <WrapItem>
-          <Text>{name}</Text>
+          <Text fontWeight="bold">{name}</Text>
         </WrapItem>
       </Flex>
       <Handle type="source" position={Position.Bottom} />
