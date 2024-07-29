@@ -1,12 +1,10 @@
 'use client';
-import { FilmNode } from '@/types/reactFlowNodes';
+import { FilmNodeType } from '@/types/reactFlowNodes';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 import { ImFilm } from 'react-icons/im';
 
-export default function FlowCustomFilmNode({
-  data: { name },
-}: NodeProps<FilmNode>) {
+export default function FilmNode({ data: { name } }: NodeProps<FilmNodeType>) {
   return (
     <Box w="auto" h="auto">
       <Flex

@@ -1,12 +1,12 @@
 'use client';
-import { ShipNode } from '@/types/reactFlowNodes';
+import { ShipNodeType } from '@/types/reactFlowNodes';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 import { GiSpaceship } from 'react-icons/gi';
 
 export default function FlowCustomFilmNode({
   data: { name },
-}: NodeProps<ShipNode>) {
+}: NodeProps<ShipNodeType>) {
   return (
     <Box
       bg="white"

@@ -1,5 +1,5 @@
 import { Node } from '@xyflow/react';
 
-export type CharacterNode = Node<{ name: string }, 'char'>;
-export type FilmNode = Node<{ name: string }, 'film'>;
-export type ShipNode = Node<{ name: string }, 'ship'>;
+export type CharacterNodeType = Node<{ name: string }, 'char'>;
+export type FilmNodeType = Node<{ name: string }, 'film'>;
+export type ShipNodeType = Node<{ name: string }, 'ship'>;

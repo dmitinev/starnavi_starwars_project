@@ -1,8 +1,8 @@
 'use client';
 import { fetchCharacters } from '@/actions/characters';
 import CharacterCard from '@/components/CharacterCard';
+import { removeDuplicateObjects } from '@/helpers/removeDuplicateObjects';
 import { ICharacter } from '@/types/character';
-import { removeDuplicateObjects } from '@/utils/removeDuplicateObjects';
 import { Container, Grid, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';

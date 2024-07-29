@@ -1,11 +1,11 @@
 'use client';
-import { CharacterNode } from '@/types/reactFlowNodes';
+import { CharacterNodeType } from '@/types/reactFlowNodes';
 import { Avatar, Box, Flex, Text, WrapItem } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 
-export default function FlowCustomCharacterNode({
+export default function CharacterNode({
   data: { name },
-}: NodeProps<CharacterNode>) {
+}: NodeProps<CharacterNodeType>) {
   return (
     <Box
       bg="white"

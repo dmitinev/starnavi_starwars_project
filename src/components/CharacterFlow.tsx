@@ -1,9 +1,9 @@
 'use client';
 
-import FlowCustomCharacterNode from '@/components/FlowCustomCharacterNode';
-import FlowCustomFilmNode from '@/components/FlowCustomFilmNode';
-import FlowCustomShipNode from '@/components/FlowCustomShipNode';
-import { getPlacedElements } from '@/utils/makeFlowNodesAutolayout';
+import CharacterNode from '@/components/CharacterNode';
+import FilmNode from '@/components/FilmNode';
+import FlowCustomShipNode from '@/components/SpaceshipNode';
+import { getPlacedElements } from '@/helpers/makeFlowNodesAutolayout';
 import { Flex } from '@chakra-ui/react';
 import {
   Controls,
@@ -16,12 +16,12 @@ import {
 import { useEffect } from 'react';
 
 const nodeTypes = {
-  FlowCustomCharacterNode: FlowCustomCharacterNode,
-  FlowCustomFilmNode: FlowCustomFilmNode,
+  FlowCustomCharacterNode: CharacterNode,
+  FlowCustomFilmNode: FilmNode,
   FlowCustomShipNode: FlowCustomShipNode,
 };
 
-export default function CharacterChartFlow({
+export default function CharacterFlow({
   nodesArray,
   edgesArray,
 }: Readonly<{
