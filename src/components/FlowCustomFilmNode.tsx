@@ -7,12 +7,12 @@ export default function FlowCustomFilmNode({
   data: { name },
 }: NodeProps<FilmNode>) {
   return (
-    <Box>
+    <Box w="auto" h="auto">
       <Box bg="white" p={1} border="1px solid gray">
         <Text>{name}</Text>
       </Box>
-      <Handle type="target" position={Position.Left} />
-      <Handle type="source" position={Position.Right} />
+      <Handle type="target" position={Position.Top} />
+      <Handle type="source" position={Position.Bottom} />
     </Box>
   );
 }

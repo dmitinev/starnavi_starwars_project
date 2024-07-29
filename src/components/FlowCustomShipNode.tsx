@@ -7,11 +7,11 @@ export default function FlowCustomFilmNode({
   data: { name },
 }: NodeProps<ShipNode>) {
   return (
-    <Box>
-      <Box bg="white" p={1} border="1px solid gray">
+    <Box bg="white" p={1} border="1px solid gray" w="auto" h="auto">
+      <Box>
         <Text>{name}</Text>
       </Box>
-      <Handle type="target" position={Position.Left} />
+      <Handle type="target" position={Position.Top} />
     </Box>
   );
 }

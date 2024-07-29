@@ -1,4 +1,4 @@
-import { fetchCharacters, fetchSingleCharacter } from '@/actions/characters';
+import { fetchSingleCharacter } from '@/actions/characters';
 import { fetchSingleFilm } from '@/actions/films';
 import { fetchSingleSpaceship } from '@/actions/spaceships';
 import CharacterChartFlow from '@/components/CharacterChartFlow';
@@ -8,13 +8,6 @@ import { IShip } from '@/types/ship';
 import { Edge, Node } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { Metadata } from 'next';
-
-export async function generateStaticParams() {
-  const characters = await fetchCharacters();
-  return characters.results.map((char) => ({
-    params: { id: char.id.toString() },
-  }));
-}
 
 export async function generateMetadata({
   params: { id },
@@ -29,9 +22,9 @@ export async function generateMetadata({
 
 export default async function CharacterPage({
   params: { id },
-}: {
+}: Readonly<{
   params: { id: string };
-}) {
+}>) {
   const character = await fetchSingleCharacter(Number(id));
   const films = await Promise.all(
     character.films.map((id) => fetchSingleFilm(id)),
@@ -59,7 +52,7 @@ function convertApiDataToFlowData(
   const edges: Edge[] = [];
 
   nodes.push({
-    id: char.id.toString(),
+    id: char.url,
     data: { name: char.name },
     draggable: false,
     position: _position,
@@ -67,7 +60,7 @@ function convertApiDataToFlowData(
   });
   films.forEach((film, filmIndex) => {
     nodes.push({
-      id: film.id.toString(),
+      id: film.url,
       data: { name: film.title },
       draggable: false,
       position: _position,
@@ -75,24 +68,24 @@ function convertApiDataToFlowData(
     });
     edges.push({
       id: `char-film-${filmIndex}`,
-      source: char.id.toString(),
-      target: film.id.toString(),
+      source: char.url,
+      target: film.url,
       animated: true,
     });
     if (starships.length > 0) {
       starships.forEach((ship, shipIndex) => {
         if (film.starships.includes(ship.id)) {
           nodes.push({
-            id: ship.id.toString(),
-            data: { name: ship.name, model: ship.model },
+            id: ship.url,
+            data: { name: ship.name },
             draggable: false,
             position: _position,
             type: 'FlowCustomShipNode',
           });
           edges.push({
             id: `film-ship-${filmIndex}-${shipIndex}`,
-            source: film.id.toString(),
-            target: ship.id.toString(),
+            source: film.url,
+            target: ship.url,
             animated: true,
           });
         }
