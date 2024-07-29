@@ -1,11 +1,9 @@
+import { assistantFont } from '@/app/font';
 import Header from '@/components/Header';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import './globals.css';
 import { Providers } from './providers';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,10 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Providers>
           <Header />
-          <main>{children}</main>
+          <main className={assistantFont.className}>{children}</main>
         </Providers>
       </body>
     </html>
