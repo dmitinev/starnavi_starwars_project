@@ -25,19 +25,14 @@ export async function fetchCharacters(
 }
 
 export async function fetchSingleCharacter(id: number): Promise<ICharacter> {
-  try {
-    const data = await fetch(process.env.API_CHARACTER_URL + `${id}`, {
-      method: 'GET',
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      if (!res.ok) {
-        return notFound();
-      }
-    });
-    return data;
-  } catch (error) {
-    throw new Error('Error fetching character - ' + id);
-  }
+  return await fetch(process.env.API_CHARACTER_URL + `${id}`, {
+    method: 'GET',
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    if (!res.ok) {
+      return notFound();
+    }
+  });
 }
