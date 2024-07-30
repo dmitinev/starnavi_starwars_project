@@ -4,7 +4,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 import { GiSpaceship } from 'react-icons/gi';
 
-export default function FlowCustomFilmNode({
+export default function SpaceshipNode({
   data: { name },
 }: NodeProps<ShipNodeType>) {
   return (
@@ -24,7 +24,7 @@ export default function FlowCustomFilmNode({
         alignItems="center"
         borderRadius="8px"
       >
-        <GiSpaceship size="30px" />
+        <GiSpaceship data-testid="testSpaceshipIcon" size="30px" />
         <Text fontWeight="bold">&quot;{name}&quot;</Text>
       </Flex>
       <Handle type="target" position={Position.Top} />

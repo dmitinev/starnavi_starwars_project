@@ -4,12 +4,17 @@ import Link from 'next/link';
 export default function CharacterCard({
   name,
   id,
-}: {
+}: Readonly<{
   name: string;
   id: number;
-}) {
+}>) {
   return (
-    <GridItem border="none" className="cardCharacterCard" borderRadius="5">
+    <GridItem
+      data-testid="character-card"
+      border="none"
+      className="cardCharacterCard"
+      borderRadius="5"
+    >
       <Link href={`/character/${id}`}>
         <Card bgColor="orange" minH="400" borderRadius="5">
           <CardBody

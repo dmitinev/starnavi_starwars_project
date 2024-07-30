@@ -19,7 +19,7 @@ export default function CharacterErrorPage({
       alignItems="center"
       flexDirection="column"
     >
-      <Text fontSize="40px" fontWeight="bold">
+      <Text data-testid="errorText" fontSize="40px" fontWeight="bold">
         Whoops, error has happened!
       </Text>
       <Flex gap="20px">

@@ -17,7 +17,7 @@ const jestConfig = {
     '!src/helpers/*.tsx',
   ],
   moduleNameMapper: {
-    '^@/components/(.*)$': '<rootDir>/components/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/__tests__/mocks/',
@@ -27,4 +27,3 @@ const jestConfig = {
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 module.exports = createJestConfig(jestConfig);
-

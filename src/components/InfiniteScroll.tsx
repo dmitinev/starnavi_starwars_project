@@ -4,6 +4,7 @@ import CharacterCard from '@/components/CharacterCard';
 import { removeDuplicateObjects } from '@/helpers/removeDuplicateObjects';
 import { ICharacter } from '@/types/character';
 import { Container, Grid, Spinner } from '@chakra-ui/react';
+import Error from 'next/error';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -36,6 +37,10 @@ export default function InfiniteScroll({
     }
   });
 
+  if (!characters.length) {
+    return <Error statusCode={400} title="Whoops, error has happened!" />;
+  }
+
   return (
     <Container maxW="container.xl" py={15} textAlign="center">
       <Grid
@@ -48,7 +53,9 @@ export default function InfiniteScroll({
           <CharacterCard key={char.name} {...char} />
         ))}
       </Grid>
-      {hasMore && <Spinner size="xl" color="orange" ref={ref} />}
+      {hasMore && (
+        <Spinner data-testid="spinner" size="xl" color="orange" ref={ref} />
+      )}
     </Container>
   );
 }
