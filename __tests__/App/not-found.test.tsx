@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import NotFound from '../../src/app/character/[id]/not-found';
+import NotFound from '../../src/app/not-found';
 
 describe('NotFound', () => {
   test('renders the page with the correct text', () => {

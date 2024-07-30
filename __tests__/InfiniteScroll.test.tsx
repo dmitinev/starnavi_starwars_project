@@ -3,7 +3,7 @@ import InfiniteScroll from '../src/components/InfiniteScroll';
 import { characterMock } from './mocks/characterMock';
 
 describe('InfiniteScroll', () => {
-  test('loads more characters when in view', async () => {
+  test('loads page with cards rendered', async () => {
     render(<InfiniteScroll initialChars={characterMock} />);
 
     const spinner = screen.getByTestId('spinner');
