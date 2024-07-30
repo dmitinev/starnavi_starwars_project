@@ -43,6 +43,7 @@ export default function CharacterFlow({
   return (
     <Flex w="100%" h="90%">
       <ReactFlow
+        data-testid="characterFlow"
         draggable={false}
         nodes={nodes}
         edges={edges}

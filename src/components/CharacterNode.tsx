@@ -13,6 +13,7 @@ export default function CharacterNode({
       border="1px solid gray"
       padding="10px"
       borderRadius="8px"
+      data-testid="characterNode"
     >
       <Flex direction="row" gap="10px" alignItems="center">
         <WrapItem>
