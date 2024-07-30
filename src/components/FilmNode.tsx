@@ -18,7 +18,7 @@ export default function FilmNode({ data: { name } }: NodeProps<FilmNodeType>) {
         padding="10px"
         borderRadius="8px"
       >
-        <ImFilm size="30px" />
+        <ImFilm data-testid="filmIcon" size="30px" />
         <Text fontWeight="bold" fontStyle="bold">
           {name}
         </Text>

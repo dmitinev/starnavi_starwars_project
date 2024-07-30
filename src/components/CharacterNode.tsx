@@ -16,10 +16,12 @@ export default function CharacterNode({
     >
       <Flex direction="row" gap="10px" alignItems="center">
         <WrapItem>
-          <Avatar size="md" />
+          <Avatar data-testid="testAvatar" size="md" />
         </WrapItem>
         <WrapItem>
-          <Text fontWeight="bold">{name}</Text>
+          <Text data-testid="targetText" fontWeight="bold">
+            {name}
+          </Text>
         </WrapItem>
       </Flex>
       <Handle type="source" position={Position.Bottom} />

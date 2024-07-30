@@ -9,9 +9,9 @@ import { useInView } from 'react-intersection-observer';
 
 export default function InfiniteScroll({
   initialChars,
-}: {
+}: Readonly<{
   initialChars: ICharacter[];
-}) {
+}>) {
   const [characters, setCharacters] = useState<ICharacter[]>(initialChars);
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);

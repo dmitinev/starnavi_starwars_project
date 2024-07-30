@@ -7,6 +7,13 @@ export const NODEHEIGHT = 100; // horizontal margin between nodes
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
+/**
+ * Calculates the positions of nodes in a graph using the dagre layout algorithm.
+ * @param nodes - An array of nodes in the graph.
+ * @param edges - An array of edges in the graph.
+ * @param direction - The direction of the graph layout. Defaults to 'TB' (top to bottom).
+ * @returns An object containing the updated nodes and the original edges.
+ */
 export const getPlacedElements = (
   nodes: Node[],
   edges: Edge[],
