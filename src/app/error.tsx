@@ -4,10 +4,10 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 
 export default function CharacterErrorPage({
   reset,
-}: {
+}: Readonly<{
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}>) {
   const resetHandler = () => {
     reset();
   };

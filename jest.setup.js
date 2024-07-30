@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import 'whatwg-fetch';
 
 global.IntersectionObserver = class {
   constructor() {}
@@ -12,3 +13,4 @@ global.IntersectionObserver = class {
     return null;
   }
 };
+

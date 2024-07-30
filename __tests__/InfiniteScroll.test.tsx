@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import 'whatwg-fetch';
 import InfiniteScroll from '../src/components/InfiniteScroll';
 import { characterMock } from './mocks/characterMock';
 
@@ -16,7 +15,6 @@ describe('InfiniteScroll', () => {
   test('error page when there is no characters to render', async () => {
     render(<InfiniteScroll initialChars={[]} />);
 
-    screen.logTestingPlaygroundURL();
     expect(
       screen.getByRole('heading', {
         name: /whoops, error has happened!\./i,
