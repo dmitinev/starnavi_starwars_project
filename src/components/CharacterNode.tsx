@@ -3,6 +3,12 @@ import { CharacterNodeType } from '@/types/reactFlowNodes';
 import { Avatar, Box, Flex, Text, WrapItem } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 
+/**
+ * Renders a character node component.
+ *
+ * @param {string} props.data.name - The name of the character.
+ * @returns {JSX.Element} The rendered character node component.
+ */
 export default function CharacterNode({
   data: { name },
 }: NodeProps<CharacterNodeType>) {

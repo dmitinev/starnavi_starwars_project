@@ -2,6 +2,11 @@ import { Box, Container, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+/**
+ * Renders the header component.
+ *
+ * @returns The rendered header component.
+ */
 export default function Header() {
   return (
     <Box as="header">

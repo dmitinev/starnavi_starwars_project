@@ -4,6 +4,13 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 import { ImFilm } from 'react-icons/im';
 
+/**
+ * FilmNode component represents a node in the film graph.
+ *
+ * @param data.name - The name of the film.
+ *
+ * @returns The rendered FilmNode component.
+ */
 export default function FilmNode({ data: { name } }: NodeProps<FilmNodeType>) {
   return (
     <Box w="auto" h="auto">

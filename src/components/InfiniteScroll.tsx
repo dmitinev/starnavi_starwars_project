@@ -8,14 +8,26 @@ import Error from 'next/error';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+/**
+ * InfiniteScroll component that displays a grid of character cards and loads more characters when scrolled to the bottom.
+ *
+ * @param initialChars - The initial characters array to display in the grid.
+ */
 export default function InfiniteScroll({
   initialChars,
 }: Readonly<{
   initialChars: ICharacter[];
 }>) {
+  // State receives the initial characters array from the parent page where it is fetched first time.
   const [characters, setCharacters] = useState<ICharacter[]>(initialChars);
+
+  // State to keep track of the current page number.
   const [page, setPage] = useState<number>(1);
+
+  // State to keep track of whether there are more characters to load from the API.
   const [hasMore, setHasMore] = useState<boolean>(true);
+
+  // Intersection Observer hook to detect when the loading spinner is in view.
   const [ref, inView] = useInView();
 
   async function loadMoreCharacters() {
@@ -32,11 +44,13 @@ export default function InfiniteScroll({
   }
 
   useEffect(() => {
+    // if loading spinner is in view, load more characters from the API.
     if (inView) {
       loadMoreCharacters();
     }
   });
 
+  // If there are no characters were received for some reason, show an error page.
   if (!characters.length) {
     return <Error statusCode={400} title="Whoops, error has happened!" />;
   }

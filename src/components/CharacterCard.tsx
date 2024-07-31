@@ -1,6 +1,14 @@
 import { Card, CardBody, GridItem, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 
+/**
+ * Renders a character card component.
+ *
+ * @component
+ * @param {string} props.name - The name of the character.
+ * @param {number} props.id - The ID of the character.
+ * @returns {JSX.Element} The character card component.
+ */
 export default function CharacterCard({
   name,
   id,

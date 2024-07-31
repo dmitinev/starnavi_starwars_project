@@ -4,6 +4,13 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { Handle, NodeProps, Position } from '@xyflow/react';
 import { GiSpaceship } from 'react-icons/gi';
 
+/**
+ * Renders a spaceship node.
+ *
+ * @component
+ * @param {string} props.data.name - The name of the spaceship.
+ * @returns {JSX.Element} The rendered spaceship node.
+ */
 export default function SpaceshipNode({
   data: { name },
 }: NodeProps<ShipNodeType>) {

@@ -17,23 +17,29 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
 export const getPlacedElements = (
   nodes: Node[],
   edges: Edge[],
-  direction: string = 'TB',
+  direction: string = 'TB', // direction of react flow nodes
 ) => {
+  // Check if the graph is horizontal
   const isHorizontal = direction === 'LR';
   dagreGraph.setGraph({ rankdir: direction });
 
+  // Add nodes to the graph
   nodes.forEach((node) => {
     dagreGraph.setNode(node.id, { width: NODEWIDTH, height: NODEHEIGHT });
   });
 
+  // Add edges to the graph
   edges.forEach((edge) => {
     dagreGraph.setEdge(edge.source, edge.target);
   });
 
+  // Calculate the layout of the graph
   dagre.layout(dagreGraph);
 
+  // Update the nodes with the calculated positions
   const newNodes = nodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
+    // Set the target and source positions based on the direction of the graph
     return {
       ...node,
       targetPosition: isHorizontal ? 'left' : 'top',

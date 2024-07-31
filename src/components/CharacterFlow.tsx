@@ -21,6 +21,13 @@ const nodeTypes = {
   FlowCustomShipNode: FlowCustomShipNode,
 };
 
+/**
+ * Renders the CharacterFlow component.
+ *
+ * @param nodesArray - The array of React Flow nodes.
+ * @param edgesArray - The array of React Flow edges.
+ * @returns {JSX.Element} The rendered CharacterFlow component.
+ */
 export default function CharacterFlow({
   nodesArray,
   edgesArray,
@@ -32,6 +39,7 @@ export default function CharacterFlow({
   const [edges, setEdges] = useEdgesState<Edge>([]);
 
   useEffect(() => {
+    // setting nodes and edges with the elements returned from getPlacedElements function
     const { nodes: placedNodes, edges: placedEdges } = getPlacedElements(
       nodesArray,
       edgesArray,
@@ -41,6 +49,7 @@ export default function CharacterFlow({
   }, []);
 
   return (
+    // Container should have defined width and height to display ReactFlow properly
     <Flex w="100%" h="90%">
       <ReactFlow
         data-testid="characterFlow"
